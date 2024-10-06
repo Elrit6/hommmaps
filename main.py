@@ -40,7 +40,6 @@ class Maps:
                         data["comments"],
                         data["humans"],
                         data["votes"],
-                        #data["votes"],
                         folder,
                         data["players"],
                         data["size"],
