@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Heroes Of Might And Magic 2 maps">
+    <title>
+        hommmaps2 | {{ map.name }}
+    </title>
+    <link rel="icon" type="image/x-icon" href="static/img/favicon.ico">
+    <link rel="stylesheet" href="static/css/home.css">
+</head>
+<body>
+    <div class="grid">
+        <section class="sidebar">
+            <div>
+                <a href="/">
+                    <button class="sidebar-button">    
+                        maps
+                    </button>
+                </a><br>                    
+                <a href="/settings">
+                    <button class="sidebar-button">    
+                        settings
+                    </button>
+                </a><br>      
+                <a href="https://forms.gle/Qf3hFhs5sngtk27Q8">
+                    <button class="sidebar-button">
+                        submit
+                    </button>
+                </a>
+            </div>
+            {% if user %}
+                <div class="login-status">
+                    <h3>logged in as {{user}}</h3>
+                </div>
+            {% endif %}            
+        </section>
+        <header>
+            <h1>
+                {{ map.name }}
+            </h1>
+        </header>
+        <section class="main">
+            <div class="map-info">
+                <img src="static/maps/{{map.name}}/thumbnail.jpg"><br> 
+                <a href="static/maps/{{map.name}}/{{map.file}}" download="{{map.file}}">
+                    <button class="download-button">
+                        download
+                    </button>
+                </a>      
+                <form method="POST" hx-post="/{{map.name}}/upvote">
+                    <button class="vote-button" type="submit">
+                        +
+                    </button>
+                </form>
+                <form method="POST" hx-post="/{{map.name}}/downvote">
+                    <button class="vote-button" type="submit">
+                        -
+                    </button>                
+                </form> 
+                <a href="/{{map.name}}">
+                    comments
+                </a>                                            
+                <p class="description-text"> 
+                    <br>
+                    author: {{ map.author }} <br>
+                    size: {{ map.size }} <br>
+                    players: {{ map.humans }} / {{ map.players }} <br>
+                    rating:
+                    {%if map.votes | length > 0%}
+                    {{ (5 * (map.votes.values() | sum / map.votes | length) + 5) | round(2)}} / 10 ({{map.votes.values() | length }})
+                    {% else %}
+                    No votes yet
+                    {% endif %}<br>
+                </p><br>           
+            </div>
+            <div class="comment-input">
+                <form method="POST" hx-post="/{{map.name}}/comment">           
+                    <input autocomplete="off" class="comment-input" name="comment" placeholder="comment" type="text">
+                    <button class="comment-submit">
+                        send
+                    </button>                                 
+                </form>            
+            </div>
+            <div class="comments">
+                <p class="comment-text">
+                    <strong>
+                        {{ username }}
+                    </strong>
+                    {{ comment }}
+                </p>
+            </div>
+        </section>
+        <section class="footer">
+            <div>
+                <span class="socials"> 
+                    discord: elrit 
+                </span>                
+                <a class="socials" href="https://www.reddit.com/user/NotElrit/">
+                    reddit
+                </a>
+                <a class="socials" href="https://x.com/elrit6">
+                    twitter
+                </a>
+            </div>
+        </section>   
+    </div>
+    <script src="static/js/main.js"></script> 
+</body>

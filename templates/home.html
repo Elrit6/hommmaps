@@ -1,0 +1,96 @@
+<!-- 
+todo: 
+    - settings page, which includes: color scheme, font etc. 
+    - fix account page css
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Heroes Of Might And Magic 2 maps">
+    <title>
+        hommmaps2
+    </title>
+    <link rel="icon" type="image/x-icon" href="static/img/favicon.ico">
+    <link rel="stylesheet" href="static/css/home.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/htmx/1.9.2/htmx.min.js"></script>
+</head>
+<body>
+    <div class="grid">
+        <section class="sidebar">
+            <div>
+                <a href="/">
+                    <button class="sidebar-button">    
+                        maps
+                    </button>
+                </a><br>                    
+                <a href="/settings">
+                    <button class="sidebar-button">    
+                        settings
+                    </button>
+                </a><br>      
+                <a href="https://forms.gle/Qf3hFhs5sngtk27Q8">
+                    <button class="sidebar-button">
+                        submit
+                    </button>
+                </a>
+            </div>
+            {%if user%}
+                <div class="login-status">
+                    <h3>logged in as {{user}}</h3>
+                </div>
+            {%endif%}
+            <div class="sort-stuff">
+                <p>leave empty for any</p>
+                <form method="POST" hx-post="/mapsUpdate" hx-target="#maps-list" hx-swap="innerHTML">  
+                    <input autocomplete="off" name="name" placeholder="name" type="text"><br>
+                    <input autocomplete="off" name="author" placeholder="author" type="text"><br>         
+                    <input type="number" min="2" max="6" name="min" placeholder="min"> 
+                    <input type="number" min="2" max="6" name="max" placeholder="max">
+                    <select name="size">
+                        <option value="0">any</option>
+                        <option value="1">S</option>
+                        <option value="2">M</option>
+                        <option value="3">L</option>
+                        <option value="4">XL</option>
+                    </select><br>
+                    <button class="map-search-button" type="submit">
+                        search
+                    </button>                
+                </form>
+            </div>
+        </section>
+        <header>
+            <h1>
+                hommmaps2
+            </h1>
+            <h3>
+                {{totalMaps}} in total
+            </h3>
+        </header>
+        <section class="main">
+            <div id="response" 
+                hx-get="/mapsUpdate"
+                hx-trigger="load"
+                hx-target="#maps-list"
+                hx-swap="innerHTML">
+            </div>
+            <div class="maps-list" id="maps-list">
+            </div>
+        </section>
+         <section class="footer">
+            <div>
+                <span class="socials"> discord: elrit</span>                
+                <a class="socials" href="https://www.reddit.com/user/NotElrit/">reddit</a>
+                <a class="socials" href="https://x.com/elrit6">twitter</a>
+            </div>
+        </section>   
+    </div>
+    {%if alert%}
+        <script>
+            setTimeout(function(){alert("{{alert}}");}, 10);
+        </script>
+    {%endif%}   
+    <script src="static/js/main.js"></script> 
+</body>
+</html>

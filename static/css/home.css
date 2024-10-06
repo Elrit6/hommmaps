@@ -1,0 +1,122 @@
+:root {
+    --bg-color-1: lightgray;
+    --bg-color-2: white;
+    --font: "Arial";
+    --text-color: black;
+    color-scheme: dark;
+}
+
+* {
+    font-family: var(--font);
+    margin: 0px;
+}
+
+.comments {
+    clear: none;    
+    float: right;
+    height: 13rem;
+    padding: 10px;     
+    overflow-y: auto;
+    margin-top: 10px;
+    margin: 0 auto;
+    width: 50%;
+}
+
+.comments, .comment-input {
+    float: right;
+}
+
+.footer {
+    grid-column: span 2;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 10fr;
+    grid-template-rows: 0fr 2fr 0fr;
+}
+
+h1 {
+    font-size: 72px;
+}
+
+h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+h1, h2, h3, h4, p {
+    color: var(--text-color);
+}
+
+header {
+    text-align: center;
+}
+
+header, section {
+    background-color: var(--bg-color-1);
+    padding: 20px;
+}
+
+.login, .map, .settings {
+    border-style: dotted;
+    border-width: 10px;
+    border-color: transparent;
+    margin: 20px;
+}
+
+.login, .map, .settings, .sidebar {
+    background-color: var(--bg-color-1);
+}
+
+.maps-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+    padding: 20px;
+}
+
+.main {
+    background-color: var(--bg-color-2);   
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.map-info {
+    clear: right;
+    float: right;
+}
+
+.map-info  {
+    float: left;
+}
+
+.map-info button {
+    float: left;
+}
+
+.login-status {
+    margin-top: 4px;
+}
+
+
+.socials {
+    margin-right: 12px;
+}
+
+.sidebar {
+    grid-row: span 2;
+}
+
+.sidebar-button {
+    margin-bottom: 4px;
+    width: 100px;
+}
+
+
+
+

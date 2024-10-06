@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Heroes Of Might And Magic 2 maps">
+    <title>
+        hommmaps2 | settings
+    </title>
+    <link rel="icon" type="image/x-icon" href="static/img/favicon.ico">
+    <link rel="stylesheet" href="static/css/home.css">
+</head>
+<body>
+    <div class="grid">
+        <section class="sidebar">
+            <div>
+                <a href="/">
+                    <button class="sidebar-button">    
+                        maps
+                    </button>
+                </a><br>                    
+                <a href="/settings">
+                    <button class="sidebar-button">    
+                        settings
+                    </button>
+                </a><br>      
+                <a href="https://forms.gle/Qf3hFhs5sngtk27Q8">
+                    <button class="sidebar-button">
+                        submit
+                    </button>
+                </a>
+            </div>
+            {% if user %}
+                <div class="login-status">
+                    <h3>logged in as {{user}}</h3>
+                </div>
+            {% endif %}
+        </section>
+        <header>
+            <h1>
+                hommmaps2
+            </h1>
+        </header>
+        <section class="main">
+            <div class="settings">
+                <h2>
+                    Settings
+                </h2>
+                <button id="theme">
+                    change theme
+                </button><br>
+                <select id="font" name="font">
+                    <option value="Arial">
+                        Arial
+                    </option> 
+                    <option value="Comic Sans MS">
+                        Comic Sans MS
+                    </option> 
+                    <option value="Courier New">
+                        Courier New 
+                    </option> 
+                    <option value="Monospace">  
+                        Monospace
+                    </option>                                       
+                    <option value="Roboto">
+                        Roboto
+                    </option>  
+                    <option value="Verdana">
+                        Verdana
+                    </option> 
+                </select><br>
+            </div>
+            <div class="login">
+                <h2>
+                    Account
+                </h2>
+                <form method="POST">
+                    <input autocomplete="on" type="text" name="username" placeholder="username"><br>
+                    <input type="password" name="password" placeholder="password"><br>
+                    <input type="submit" value="reg/log">
+                </form>
+                <a href="/logout">
+                    <button>
+                        log out
+                    </button>
+                </a>
+            </div>
+        </section>
+        <section class="footer">
+            <div>
+                <span class="socials"> 
+                    discord: elrit 
+                </span>                
+                <a class="socials" href="https://www.reddit.com/user/NotElrit/">
+                    reddit
+                </a>
+                <a class="socials" href="https://x.com/elrit6">
+                    twitter
+                </a>
+            </div>
+        </section>   
+    </div>
+    {% if alert %}
+        <script>
+            setTimeout(function(){alert("{{alert}}");},10);
+        </script>
+    {% endif %} 
+    <script src="static/js/settings.js"></script> 
+    <script src="static/js/main.js"></script> 
+</body>
+</html>
